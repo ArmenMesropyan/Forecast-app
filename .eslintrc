@@ -12,7 +12,7 @@
     "max-len": ["error", 150],
     "no-tabs": "off",
     "no-alert": "off",
-    "indent": [2, "tab"],
+    "indent": "off",
     "no-param-reassign": "off"
   }
 }

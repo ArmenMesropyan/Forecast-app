@@ -16,15 +16,50 @@ async function getForecast(value, type) {
 
         const res = await fetch(`${API_ENV.url}/${type}${query}`)
             .then((data) => data.json());
-        console.log('res: ', res);
         return res;
     } catch (error) {
         return Promise.reject(error);
     }
 }
 
-getForecast('Yerevan', 'weather');
-getForecast({ lat: 40.18, lon: 44.51 }, 'weather');
+function serializeWeather({
+    name,
+    dt: date,
+    sys: { country },
+    main: { temp },
+    weather: [weather],
+}) {
+    const state = {
+        name,
+        country,
+        temp,
+        date,
+        main: weather.main,
+        description: weather.description,
+    };
+    return state;
+}
 
-getForecast('Yerevan', 'forecast');
-getForecast({ lat: 40.18, lon: 44.51 }, 'forecast');
+function serializeForecast({ list }) {
+    const res = list.reduce((acc, item) => {
+        const date = item.dt_txt.split(' ')[0];
+        if (!acc[date]) acc[date] = [];
+        acc[date].push(item);
+        return acc;
+    }, {});
+
+    return res;
+}
+
+async function init() {
+    try {
+        const weather = serializeWeather(await getForecast('Yerevan', 'weather'));
+        const forecast = serializeForecast(await getForecast({ lat: 40.18, lon: 44.51 }, 'forecast'));
+        console.log('weather: ', weather);
+        console.log('forecast: ', forecast);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+init();
