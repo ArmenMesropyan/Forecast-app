@@ -113,11 +113,11 @@ function weatherHTMLTemplate({
     return `
         <ul class="current-weather__list">
             <li class="current-weather__item current-date">
-            <p class="current-date__week">${week}</p>
-            <p class="current-date__day">${day}</p>
+                <p class="current-date__week">${week}</p>
+                <p class="current-date__day">${day}</p>
             </li>
             <li class="current-weather__item current-main">
-                <p class="current-main__name">${name}${country}</p>
+                <p class="current-main__name">${name}, ${country}</p>
                 <p class="current-weather__temp">${temp} C</p>
             </li>
             <li class="current-weather__item current-second">
