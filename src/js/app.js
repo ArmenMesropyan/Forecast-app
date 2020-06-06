@@ -32,7 +32,7 @@ function serializeWeather({
     const state = {
         name,
         country,
-        temp,
+        temp: Math.round(temp),
         date,
         main: weather.main,
         description: weather.description,
@@ -57,9 +57,7 @@ function getApproximateForecast(list) {
 
     const res = Object.values(list).reduce((acc, item) => {
         item.forEach((data) => {
-            const date = data.dt_txt.split(' ');
-            const day = date[0];
-            const hours = date[1];
+            const [day, hours] = data.dt_txt.split(' ');
 
             if (hours === currentHours) acc[day] = data;
         });
