@@ -85,6 +85,8 @@ async function onUserGeo(position) {
     try {
         const { latitude, longitude } = position.coords;
         initMap(longitude, latitude);
+        const weather = serializeWeather(await getForecast({ lat: latitude, lon: longitude }, 'weather'));
+        console.log('weather: ', weather);
     } catch (error) {
         console.log(error);
     }
