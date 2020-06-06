@@ -1,5 +1,4 @@
 // Forecast API
-
 const API_ENV = {
     url: 'https://api.openweathermap.org/data/2.5',
     apiKey: '7689330884e1ff40676d8958c66d690d',
@@ -68,20 +67,7 @@ function getApproximateForecast(list) {
     return res;
 }
 
-async function init() {
-    try {
-        const weather = serializeWeather(await getForecast('Yerevan', 'weather'));
-        const forecast = serializeForecast(await getForecast({ lat: 40.18, lon: 44.51 }, 'forecast'));
-        const currentForecasts = getApproximateForecast(forecast);
-        console.log('weather: ', weather);
-        console.log('forecast: ', forecast);
-        console.log('currentForecasts: ', currentForecasts);
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-init();
+// Map API
 
 function initMap(lon, lat) {
     mapboxgl.accessToken = 'pk.eyJ1IjoiYXJtZW5tZXNyb3B5YW4iLCJhIjoiY2tiM21wbng5MGFsZjJ5bzlreG44dDFwNyJ9.vr5iz0Fi9VgpbSJ8kxfS5Q';
@@ -93,4 +79,32 @@ function initMap(lon, lat) {
     });
 }
 
-initMap(44.51, 40.18);
+// App initialization
+
+async function onUserGeo(position) {
+    try {
+        const { latitude, longitude } = position.coords;
+        initMap(longitude, latitude);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function showUserForecast() {
+    window.navigator.geolocation.getCurrentPosition(onUserGeo);
+}
+
+// async function init() {
+//     try {
+//         // const weather = serializeWeather(await getForecast('Yerevan', 'weather'));
+//         // const forecast = serializeForecast(await getForecast({ lat: 40.18, lon: 44.51 }, 'forecast'));
+//         // const currentForecasts = getApproximateForecast(forecast);
+//         showUserForecast();
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+document.addEventListener('DOMContentLoaded', () => {
+    showUserForecast();
+});
