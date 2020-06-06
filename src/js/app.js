@@ -25,7 +25,7 @@ function serializeWeather({
     name,
     dt: date,
     sys: { country },
-    main: { temp },
+    main: { temp, humidity },
     weather: [weather],
     coord,
 }) {
@@ -35,6 +35,7 @@ function serializeWeather({
         temp: Math.round(temp),
         date,
         main: weather.main,
+        humidity,
         description: weather.description,
         coord,
     };
@@ -53,7 +54,8 @@ function serializeForecast({ list }) {
 }
 
 function getApproximateForecast(list) {
-    const current = Object.values(list)[0][1];
+    const arr = Object.values(list);
+    const current = arr[0][1] || arr[1][0];
     const currentHours = current.dt_txt.split(' ')[1];
 
     const res = Object.values(list).reduce((acc, item) => {
@@ -83,39 +85,82 @@ function initMap(lon, lat) {
 
 // App initialization
 
-async function onUserGeo(position) {
-    try {
-        const { latitude, longitude } = position.coords;
-        initMap(longitude, latitude);
-        const weather = serializeWeather(await getForecast({ lat: latitude, lon: longitude }, 'weather'));
-        const forecast = serializeForecast(await getForecast({ lat: latitude, lon: longitude }, 'forecast'));
-        const currentForecasts = getApproximateForecast(forecast);
-        console.log('forecast: ', forecast);
-        console.log('currentForecasts: ', currentForecasts);
-        console.log('weather: ', weather);
-    } catch (error) {
-        console.log(error);
-    }
+function coordsHTMLTemplate({ lat, lon }) {
+    return `
+        <li class="coords__item coords__item_lat">${lat}</li>
+        <li class="coords__item coords__item_lon">${lon}</li>
+    `;
 }
 
-function showUserForecast() {
-    window.navigator.geolocation.getCurrentPosition(onUserGeo);
+function weatherHTMLTemplate({
+    name,
+    country,
+    date,
+    description,
+    humidity,
+    temp,
+}) {
+    return `
+        <ul class="current-weather__list">
+            <li class="current-weather__item current-date">
+                <p class="current-date__day">${date}</p>
+                <p class="current-date__date">${date}</p>
+            </li>
+            <li class="current-weather__item current-main">
+                <p class="current-main__name">${name}${country}</p>
+                <p class="current-weather__temp">${temp} C</p>
+            </li>
+            <li class="current-weather__item current-second">
+                <p class="current-second__water">${humidity}%</p>
+                <p class="current-weather__info">${description}</p>
+            </li>
+        </ul>
+    `;
+}
+
+function showCurrentWeather({ coord, ...weather }) {
+    const coordsContainer = document.querySelector('.coords__list');
+    const currentWeatherContainer = document.querySelector('.current-weather');
+
+    coordsContainer.innerHTML = coordsHTMLTemplate(coord);
+    currentWeatherContainer.innerHTML = weatherHTMLTemplate(weather);
 }
 
 async function showForecast(val) {
     try {
-        const weather = serializeWeather(await getForecast(val, 'weather'));
-        const forecast = serializeForecast(await getForecast(val, 'forecast'));
+        let position;
+        if (val.coords) {
+            const { coords: { latitude, longitude } } = val;
+            position = { lat: latitude, lon: longitude };
+        }
+        const weather = serializeWeather(await getForecast(position || val, 'weather'));
+        const forecast = serializeForecast(await getForecast(position || val, 'forecast'));
         const currentForecasts = getApproximateForecast(forecast);
         const { lon, lat } = weather.coord;
         initMap(lon, lat);
         console.log('forecast: ', forecast);
         console.log('currentForecasts: ', currentForecasts);
         console.log('weather: ', weather);
+        showCurrentWeather(weather);
     } catch (error) {
         console.log(error);
     }
 }
+
+function showUserForecast() {
+    window.navigator.geolocation.getCurrentPosition(showForecast);
+}
+
+// async function init() {
+//     try {
+//         // const weather = serializeWeather(await getForecast('Yerevan', 'weather'));
+//         // const forecast = serializeForecast(await getForecast({ lat: 40.18, lon: 44.51 }, 'forecast'));
+//         // const currentForecasts = getApproximateForecast(forecast);
+//         showUserForecast();
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
 
 document.addEventListener('DOMContentLoaded', () => {
