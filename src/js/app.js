@@ -29,14 +29,18 @@ function serializeWeather({
     weather: [weather],
     coord,
 }) {
+    const desc = weather.description.charAt(0).toUpperCase() + weather.description.slice(1);
+    const day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date * 1000);
+    const month = new Intl.DateTimeFormat('en', { month: 'short' }).format(date * 1000);
     const state = {
         name,
         country,
         temp: Math.round(temp),
-        date,
+        day,
+        month,
         main: weather.main,
         humidity,
-        description: weather.description,
+        desc,
         coord,
     };
     return state;
@@ -95,16 +99,17 @@ function coordsHTMLTemplate({ lat, lon }) {
 function weatherHTMLTemplate({
     name,
     country,
-    date,
-    description,
+    desc,
     humidity,
     temp,
+    day,
+    month,
 }) {
     return `
         <ul class="current-weather__list">
             <li class="current-weather__item current-date">
-                <p class="current-date__day">${date}</p>
-                <p class="current-date__date">${date}</p>
+                <p class="current-date__day">${day}</p>
+                <p class="current-date__date">${month}</p>
             </li>
             <li class="current-weather__item current-main">
                 <p class="current-main__name">${name}${country}</p>
@@ -112,7 +117,7 @@ function weatherHTMLTemplate({
             </li>
             <li class="current-weather__item current-second">
                 <p class="current-second__water">${humidity}%</p>
-                <p class="current-weather__info">${description}</p>
+                <p class="current-weather__info">${desc}</p>
             </li>
         </ul>
     `;
