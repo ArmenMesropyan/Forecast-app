@@ -19,6 +19,15 @@ body {
 }
 
 .mapboxgl-ctrl-logo,
+.mapboxgl-ctrl-bottom-right,
 .mapboxgl-ctrl-attrib.mapboxgl-compact:after {
     display: none !important;
+}
+
+.layer {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
 }
