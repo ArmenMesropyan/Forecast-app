@@ -27,6 +27,7 @@ function serializeWeather({
     sys: { country },
     main: { temp },
     weather: [weather],
+    coord,
 }) {
     const state = {
         name,
@@ -35,6 +36,7 @@ function serializeWeather({
         date,
         main: weather.main,
         description: weather.description,
+        coord,
     };
     return state;
 }
@@ -75,7 +77,7 @@ function initMap(lon, lat) {
         container: 'map',
         style: 'mapbox://styles/mapbox/dark-v10',
         center: [lon, lat],
-        zoom: 7,
+        zoom: 10,
     });
 }
 
@@ -86,6 +88,10 @@ async function onUserGeo(position) {
         const { latitude, longitude } = position.coords;
         initMap(longitude, latitude);
         const weather = serializeWeather(await getForecast({ lat: latitude, lon: longitude }, 'weather'));
+        const forecast = serializeForecast(await getForecast({ lat: latitude, lon: longitude }, 'forecast'));
+        const currentForecasts = getApproximateForecast(forecast);
+        console.log('forecast: ', forecast);
+        console.log('currentForecasts: ', currentForecasts);
         console.log('weather: ', weather);
     } catch (error) {
         console.log(error);
@@ -96,17 +102,29 @@ function showUserForecast() {
     window.navigator.geolocation.getCurrentPosition(onUserGeo);
 }
 
-// async function init() {
-//     try {
-//         // const weather = serializeWeather(await getForecast('Yerevan', 'weather'));
-//         // const forecast = serializeForecast(await getForecast({ lat: 40.18, lon: 44.51 }, 'forecast'));
-//         // const currentForecasts = getApproximateForecast(forecast);
-//         showUserForecast();
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+async function showForecast(val) {
+    try {
+        const weather = serializeWeather(await getForecast(val, 'weather'));
+        const forecast = serializeForecast(await getForecast(val, 'forecast'));
+        const currentForecasts = getApproximateForecast(forecast);
+        const { lon, lat } = weather.coord;
+        initMap(lon, lat);
+        console.log('forecast: ', forecast);
+        console.log('currentForecasts: ', currentForecasts);
+        console.log('weather: ', weather);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     showUserForecast();
+    const form = document.forms.searchForm;
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const { value } = form.elements['country-search'];
+        if (!value) showUserForecast();
+        else showForecast(value);
+    });
 });

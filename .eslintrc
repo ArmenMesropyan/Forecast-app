@@ -13,6 +13,7 @@
     "no-tabs": "off",
     "no-alert": "off",
     "indent": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "linebreak-style": "off"
   }
 }
