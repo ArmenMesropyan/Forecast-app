@@ -156,17 +156,6 @@ function showUserForecast() {
     window.navigator.geolocation.getCurrentPosition(showForecast);
 }
 
-// async function init() {
-//     try {
-//         // const weather = serializeWeather(await getForecast('Yerevan', 'weather'));
-//         // const forecast = serializeForecast(await getForecast({ lat: 40.18, lon: 44.51 }, 'forecast'));
-//         // const currentForecasts = getApproximateForecast(forecast);
-//         showUserForecast();
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-
 
 document.addEventListener('DOMContentLoaded', () => {
     showUserForecast();
