@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    position: relative;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+}
+
+
+/* Map */
+
+#map {
+    position: absolute;
+    z-index: -10;
+}
+
+.mapboxgl-ctrl-logo,
+.mapboxgl-ctrl-attrib.mapboxgl-compact:after {
+    display: none !important;
+}

@@ -82,3 +82,15 @@ async function init() {
 }
 
 init();
+
+function initMap(lon, lat) {
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYXJtZW5tZXNyb3B5YW4iLCJhIjoiY2tiM21wbng5MGFsZjJ5bzlreG44dDFwNyJ9.vr5iz0Fi9VgpbSJ8kxfS5Q';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/dark-v10',
+        center: [lon, lat],
+        zoom: 7,
+    });
+}
+
+initMap(44.51, 40.18);
