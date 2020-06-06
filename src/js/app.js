@@ -30,14 +30,20 @@ function serializeWeather({
     coord,
 }) {
     const desc = weather.description.charAt(0).toUpperCase() + weather.description.slice(1);
-    const day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date * 1000);
-    const month = new Intl.DateTimeFormat('en', { month: 'short' }).format(date * 1000);
+    const dateOptions = {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+    };
+    const dateTimeFormat = new Intl.DateTimeFormat('en', dateOptions);
+    const [week, day] = dateTimeFormat.format(date * 1000).split(',');
+
     const state = {
         name,
         country,
         temp: Math.round(temp),
         day,
-        month,
+        week,
         main: weather.main,
         humidity,
         desc,
@@ -65,8 +71,7 @@ function getApproximateForecast(list) {
     const res = Object.values(list).reduce((acc, item) => {
         item.forEach((data) => {
             const [day, hours] = data.dt_txt.split(' ');
-
-            if (hours === currentHours) acc[day] = data;
+            if (hours === currentHours) acc[day] = serializeWeather(data);
         });
         return acc;
     }, {});
@@ -103,13 +108,13 @@ function weatherHTMLTemplate({
     humidity,
     temp,
     day,
-    month,
+    week,
 }) {
     return `
         <ul class="current-weather__list">
             <li class="current-weather__item current-date">
-                <p class="current-date__day">${day}</p>
-                <p class="current-date__date">${month}</p>
+            <p class="current-date__week">${week}</p>
+            <p class="current-date__day">${day}</p>
             </li>
             <li class="current-weather__item current-main">
                 <p class="current-main__name">${name}${country}</p>
