@@ -51,12 +51,33 @@ function serializeForecast({ list }) {
     return res;
 }
 
+function getApproximateForecast(list) {
+    const current = Object.values(list)[0][1];
+    const currentHours = current.dt_txt.split(' ')[1];
+
+    const res = Object.values(list).reduce((acc, item) => {
+        item.forEach((data) => {
+            const date = data.dt_txt.split(' ');
+            const day = date[0];
+            const hours = date[1];
+
+            if (hours === currentHours) acc[day] = data;
+        });
+        return acc;
+    }, {});
+
+
+    return res;
+}
+
 async function init() {
     try {
         const weather = serializeWeather(await getForecast('Yerevan', 'weather'));
         const forecast = serializeForecast(await getForecast({ lat: 40.18, lon: 44.51 }, 'forecast'));
+        const currentForecasts = getApproximateForecast(forecast);
         console.log('weather: ', weather);
         console.log('forecast: ', forecast);
+        console.log('currentForecasts: ', currentForecasts);
     } catch (error) {
         console.log(error);
     }
