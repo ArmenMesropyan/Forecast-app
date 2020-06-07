@@ -190,7 +190,7 @@ function hoursForecastTemplate({
                 </li>
                 <li class="hour-forecast__info">
                     <img src="http://openweathermap.org/img/w/${icon}.png" alt="" class="hour-forecast__img">
-                    <p class="hour-forecast__temp">${temp} C</p>
+                    <p class="hour-forecast__temp">${temp} &#8451</p>
                     <p class="hour-forecast__water water">${humidity} %</p>
                     <p class="hour-forecast__desc">${desc}</p>
                 </li>
@@ -227,8 +227,14 @@ function clearHoursForecasts() {
     container.innerHTML = '';
 }
 
+function hideScroll() {
+    const scroll = document.querySelector('.scroll-top');
+    scroll.classList.remove('scroll-top_showed');
+}
+
 function showScroll() {
     const scroll = document.querySelector('.scroll-top');
+    scroll.addEventListener('click', hideScroll);
     scroll.classList.add('scroll-top_showed');
 }
 
