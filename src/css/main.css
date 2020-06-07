@@ -129,7 +129,6 @@ img {
 .forecast-list__item,
 .hours-forecast__item {
     transition: 0.5s;
-    cursor: pointer;
 }
 
 .forecast-list__item:hover,
@@ -143,7 +142,6 @@ img {
 .current-weather {
     background-color: #ffffffb8;
     border-radius: 11px;
-    cursor: default;
 }
 
 .current-date {
@@ -199,6 +197,7 @@ img {
 .forecast-list__item {
     max-width: calc(100% * 1.8 / 12 - 20px);
     margin-right: 20px;
+    cursor: pointer;
 }
 
 .forecast-list__item:last-child {
@@ -207,6 +206,7 @@ img {
 
 .current-weather {
     max-width: calc(100% * 3 / 12 - 30px);
+    cursor: default;
 }
 
 
