@@ -20,110 +20,124 @@
             Forecast application, search your city weather instantly
         </h1>
         <section class="coords">
-            <h2 class="coords__title">
-                Geo coords
-            </h2>
-            <ul class="coords__list">
-                <li class="coords__item coords__item_lat"></li>
-                <li class="coords__item coords__item_lon"></li>
-            </ul>
+            <div class="container">
+                <h2 class="coords__title">
+                    Geo coords
+                </h2>
+                <ul class="coords__list">
+                    <li class="coords__item coords__item_lat"></li>
+                    <li class="coords__item coords__item_lon"></li>
+                </ul>
+            </div>
         </section>
         <section class="forecast-form">
-            <form class="forecast-form__form" id="searchForm">
-                <fieldset class="forecast-form__field>
-                    <label for=" country-search " class="visually-hidden ">Search geolocation</label>
-                    <input type="text " id="country-search " name="country-search " placeholder="Search geolocation " class="forecast-form__search />
-                </fieldset>
-            </form>
-        </section>
-        <section class="forecast-list">
-            <ul class="forecast-list__list">
-                <li class="forecast-list__item forecast-list__item_current current-weather">
-                    <ul class="current-weather__list">
-                        <li class="current-weather__item current-date">
-                            <p class="current-date__week">Friday</p>
-                            <p class="current-date__day">June 5</p>
-                        </li>
-                        <li class="current-weather__item current-main">
-                            <p class="current-main__name">London, GB</p>
-                            <p class="current-weather__temp">15 C</p>
-                        </li>
-                        <li class="current-weather__item current-second">
-                            <p class="current-second__water">London, GB</p>
-                            <p class="current-weather__info">Broken Clouds</p>
-                        </li>
-                    </ul>
+            <div class="container">
+                <form class="forecast-form__form" id="searchForm">
+                    <fieldset class="forecast-form__field">
+                        <label for="country-search" class="visually-hidden">Search geolocation</label
+              >
+              <input
+                type="text"
+                id="country-search"
+                name="country-search"
+                placeholder="Search geolocation"
+                class="forecast-form__search"
+              />
+            </fieldset>
+          </form>
+        </div>
+      </section>
+      <section class="forecast-list">
+        <div class="container">
+          <ul class="forecast-list__list">
+            <li
+              class="forecast-list__item forecast-list__item_current current-weather"
+            >
+              <ul class="current-weather__list">
+                <li class="current-weather__item current-date">
+                  <p class="current-date__week">Friday</p>
+                  <p class="current-date__day">June 5</p>
                 </li>
-                <li class="forecast-list__item day-weather">
-                    <ul class="day-weather__list">
-                        <li class="day-weather__date">
-                            Friday-June-5
-                        </li>
-                        <li class="day-weather__info">
-                            <img src="#" alt="#" class="day-weather__img">
-                            <p class="day-weather__temp">15 C</p>
-                            <p class="day-weather__water">39 %</p>
-                            <p class="day-weather__desc">Light Rain</p>
-                        </li>
-                    </ul>
+                <li class="current-weather__item current-main">
+                  <p class="current-main__name">London, GB</p>
+                  <p class="current-weather__temp">15 C</p>
                 </li>
-                <li class="forecast-list__item day-weather">
-                    <ul class="day-weather__list">
-                        <li class="day-weather__date">
-                            Friday-June-5
-                        </li>
-                        <li class="day-weather__info">
-                            <img src="#" alt="#" class="day-weather__img">
-                            <p class="day-weather__temp">15 C</p>
-                            <p class="day-weather__water">39 %</p>
-                            <p class="day-weather__desc">Light Rain</p>
-                        </li>
-                    </ul>
+                <li class="current-weather__item current-second">
+                  <p class="current-second__water">London, GB</p>
+                  <p class="current-weather__info">Broken Clouds</p>
                 </li>
-                <li class="forecast-list__item day-weather">
-                    <ul class="day-weather__list">
-                        <li class="day-weather__date">
-                            Friday-June-5
-                        </li>
-                        <li class="day-weather__info">
-                            <img src="#" alt="#" class="day-weather__img">
-                            <p class="day-weather__temp">15 C</p>
-                            <p class="day-weather__water">39 %</p>
-                            <p class="day-weather__desc">Light Rain</p>
-                        </li>
-                    </ul>
+              </ul>
+            </li>
+            <li class="forecast-list__item day-weather">
+              <ul class="day-weather__list">
+                <li class="day-weather__date">
+                  Friday-June-5
                 </li>
-                <li class="forecast-list__item day-weather">
-                    <ul class="day-weather__list">
-                        <li class="day-weather__date">
-                            Friday-June-5
-                        </li>
-                        <li class="day-weather__info">
-                            <img src="#" alt="#" class="day-weather__img">
-                            <p class="day-weather__temp">15 C</p>
-                            <p class="day-weather__water">39 %</p>
-                            <p class="day-weather__desc">Light Rain</p>
-                        </li>
-                    </ul>
+                <li class="day-weather__info">
+                  <img src="#" alt="#" class="day-weather__img" />
+                  <p class="day-weather__temp">15 C</p>
+                  <p class="day-weather__water">39 %</p>
+                  <p class="day-weather__desc">Light Rain</p>
                 </li>
-                <li class="forecast-list__item day-weather">
-                    <ul class="day-weather__list">
-                        <li class="day-weather__date">
-                            Friday-June-5
-                        </li>
-                        <li class="day-weather__info">
-                            <img src="#" alt="#" class="day-weather__img">
-                            <p class="day-weather__temp">15 C</p>
-                            <p class="day-weather__water">39 %</p>
-                            <p class="day-weather__desc">Light Rain</p>
-                        </li>
-                    </ul>
+              </ul>
+            </li>
+            <li class="forecast-list__item day-weather">
+              <ul class="day-weather__list">
+                <li class="day-weather__date">
+                  Friday-June-5
                 </li>
-            </ul>
-        </section>
+                <li class="day-weather__info">
+                  <img src="#" alt="#" class="day-weather__img" />
+                  <p class="day-weather__temp">15 C</p>
+                  <p class="day-weather__water">39 %</p>
+                  <p class="day-weather__desc">Light Rain</p>
+                </li>
+              </ul>
+            </li>
+            <li class="forecast-list__item day-weather">
+              <ul class="day-weather__list">
+                <li class="day-weather__date">
+                  Friday-June-5
+                </li>
+                <li class="day-weather__info">
+                  <img src="#" alt="#" class="day-weather__img" />
+                  <p class="day-weather__temp">15 C</p>
+                  <p class="day-weather__water">39 %</p>
+                  <p class="day-weather__desc">Light Rain</p>
+                </li>
+              </ul>
+            </li>
+            <li class="forecast-list__item day-weather">
+              <ul class="day-weather__list">
+                <li class="day-weather__date">
+                  Friday-June-5
+                </li>
+                <li class="day-weather__info">
+                  <img src="#" alt="#" class="day-weather__img" />
+                  <p class="day-weather__temp">15 C</p>
+                  <p class="day-weather__water">39 %</p>
+                  <p class="day-weather__desc">Light Rain</p>
+                </li>
+              </ul>
+            </li>
+            <li class="forecast-list__item day-weather">
+              <ul class="day-weather__list">
+                <li class="day-weather__date">
+                  Friday-June-5
+                </li>
+                <li class="day-weather__info">
+                  <img src="#" alt="#" class="day-weather__img" />
+                  <p class="day-weather__temp">15 C</p>
+                  <p class="day-weather__water">39 %</p>
+                  <p class="day-weather__desc">Light Rain</p>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </section>
     </div>
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
     <script src="js/app.js"></script>
-</body>
-
+  </body>
 </html>
