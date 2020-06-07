@@ -13,17 +13,12 @@ html {
 
 body {
     margin: 0;
-    padding: 0
+    padding: 0;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     font-size: 16px;
     line-height: 21px;
     color: #fff;
-    font-family: "Roboto", sans-serif;
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 21px;
-    color: #ffffff;
     overflow-x: hidden;
 }
 
@@ -100,6 +95,7 @@ img {
     font-size: 14px;
 }
 
+
 /* Form */
 
 .forecast-form {
@@ -126,6 +122,63 @@ img {
     border: 1px solid #7e6e6e;
     transform: translate(0, -10px);
 }
+
+
+/* Forecast current */
+
+.forecast-list__item,
+.hours-forecast__item {
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.forecast-list__item:hover,
+.hours-forecast__item:hover {
+    transform: scale(0.9);
+    border: 1px solid #fff;
+    transition: 0.5s;
+    border-radius: 15px;
+}
+
+.current-weather {
+    background-color: #ffffffb8;
+    border-radius: 11px;
+    cursor: default;
+}
+
+.current-date {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #000000d4;
+    border-radius: 10px;
+    padding: 0px 15px;
+    font-size: 13px;
+}
+
+.current-main {
+    font-weight: 700;
+    font-size: 35px;
+    color: #313342;
+    text-transform: uppercase;
+    padding: 0 15px;
+}
+
+.current-main__name {
+    font-size: 27px;
+}
+
+.current-second {
+    font-weight: 700;
+    color: #245a5b;
+    padding: 0 15px;
+    font-size: 15px;
+}
+
+.current-second__water {
+    margin-bottom: 10px;
+}
+
 
 /* Map */
 
