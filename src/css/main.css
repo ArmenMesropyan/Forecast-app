@@ -180,6 +180,36 @@ img {
 }
 
 
+/* Forecast days */
+
+.day-weather {
+    position: relative;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.forecast-list__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.forecast-list__item {
+    max-width: calc(100% * 1.8 / 12 - 20px);
+    margin-right: 20px;
+}
+
+.forecast-list__item:last-child {
+    margin-right: 0;
+}
+
+.current-weather {
+    max-width: calc(100% * 3 / 12 - 30px);
+}
+
+
 /* Map */
 
 #map {
