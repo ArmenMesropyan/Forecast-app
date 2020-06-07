@@ -124,6 +124,145 @@ img {
 }
 
 
+/* Forecast current */
+
+.forecast-list__item,
+.hours-forecast__item {
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.forecast-list__item:hover,
+.hours-forecast__item:hover {
+    transform: scale(0.9);
+    border: 1px solid #fff;
+    transition: 0.5s;
+    border-radius: 15px;
+}
+
+.current-weather {
+    background-color: #ffffffb8;
+    border-radius: 11px;
+    cursor: default;
+}
+
+.current-date {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #000000d4;
+    border-radius: 10px;
+    padding: 0px 15px;
+    font-size: 13px;
+}
+
+.current-main {
+    font-weight: 700;
+    font-size: 35px;
+    color: #313342;
+    text-transform: uppercase;
+    padding: 0 15px;
+}
+
+.current-main__name {
+    font-size: 27px;
+}
+
+.current-second {
+    font-weight: 700;
+    color: #245a5b;
+    padding: 0 15px;
+    font-size: 15px;
+}
+
+.current-second__water {
+    margin-bottom: 10px;
+}
+
+
+/* Forecast days */
+
+.day-weather {
+    position: relative;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.forecast-list__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.forecast-list__item {
+    max-width: calc(100% * 1.8 / 12 - 20px);
+    margin-right: 20px;
+}
+
+.forecast-list__item:last-child {
+    margin-right: 0;
+}
+
+.current-weather {
+    max-width: calc(100% * 3 / 12 - 30px);
+}
+
+
+/* Hours Forecast */
+
+#app .hours-forecast {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+}
+
+.hours-forecast__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hours-forecast {
+    background-color: #1d1d1d;
+}
+
+.hour-forecast {
+    text-align: center;
+    border-radius: 10px;
+    background-color: #1a1919;
+    margin: 20px;
+    width: calc(100% / 12 * 3 - 40px);
+    padding: 20px 10px;
+}
+
+.hour-forecast__date {
+    font-size: 15px;
+}
+
+.forecast-list__link {
+    font-size: 0;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+}
+
+
+/* Scroll */
+
+.scroll-top {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    display: none;
+}
+
+.scroll-top_showed {
+    display: block;
+}
+
+
 /* Map */
 
 #map {
