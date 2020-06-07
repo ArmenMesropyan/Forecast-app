@@ -19,6 +19,11 @@ body {
     font-size: 16px;
     line-height: 21px;
     color: #fff;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 21px;
+    color: #ffffff;
     overflow-x: hidden;
 }
 
@@ -95,7 +100,6 @@ img {
     font-size: 14px;
 }
 
-
 /* Form */
 
 .forecast-form {
@@ -123,7 +127,6 @@ img {
     transform: translate(0, -10px);
 }
 
-
 /* Map */
 
 #map {
@@ -144,3 +147,6 @@ img {
     position: relative;
     z-index: 1;
 }
+
+
+/* Main stilization */
