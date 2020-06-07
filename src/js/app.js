@@ -39,9 +39,10 @@ function serializeWeather({
         weekday: 'long',
         month: 'long',
         day: 'numeric',
+        hour: 'numeric',
     };
     const dateTimeFormat = new Intl.DateTimeFormat('en', dateOptions);
-    const [week, day] = dateTimeFormat.format(date * 1000).split(',');
+    const [week, day, hour] = dateTimeFormat.format(date * 1000).split(',');
 
     const state = {
         name,
@@ -49,7 +50,10 @@ function serializeWeather({
         temp: Math.round(temp),
         day,
         week,
+        date,
+        hour,
         main: weather.main,
+        icon: weather.icon,
         humidity,
         desc,
         coord,
@@ -141,15 +145,114 @@ function weatherHTMLTemplate({
     `;
 }
 
-function showCurrentWeather({
-    coord,
-    ...weather
-}) {
+function forecastHTMLTemplate(date, {
+    desc,
+    humidity,
+    temp,
+    day,
+    week,
+    icon,
+} = {}) {
+    return `
+        <li class="forecast-list__item day-weather" data-date="${date}">
+            <a class="forecast-list__link" href="#hours-forecast">Go to this day hours forecasts</a>
+            <ul class="day-weather__list">
+                <li class="day-weather__date">
+                    ${week} -${day}
+                </li>
+                <li class="day-weather__info">
+                    <img src="http://openweathermap.org/img/w/${icon}.png" alt="${desc}" class="day-weather__img">
+                    <p class="day-weather__temp">${temp} &#8451</p>
+                    <p class="day-weather__water">${humidity} %</p>
+                    <p class="day-weather__desc">${desc}</p>
+                </li>
+            </ul>
+        </li>
+    `;
+}
+
+function hoursForecastTemplate({
+    desc,
+    humidity,
+    temp,
+    day,
+    week,
+    icon,
+    hour,
+} = {}) {
+    return `
+        <li class="hours-forecast__item hour-forecast">
+            <ul class="hour-forecast__list">
+                <li class="hour-forecast__date">
+                    <p class="hour-forecast__week">${week}</p>
+                    <p class="hour-forecast__day">${day} - ${hour}</p>
+                </li>
+                <li class="hour-forecast__info">
+                    <img src="http://openweathermap.org/img/w/${icon}.png" alt="" class="hour-forecast__img">
+                    <p class="hour-forecast__temp">${temp} C</p>
+                    <p class="hour-forecast__water">${humidity} %</p>
+                    <p class="hour-forecast__desc">${desc}</p>
+                </li>
+            </ul>
+        </li>
+    `;
+}
+
+function showCurrentWeather({ coord, ...weather }) {
     const coordsContainer = document.querySelector('.coords__list');
     const currentWeatherContainer = document.querySelector('.current-weather');
 
     coordsContainer.innerHTML = coordsHTMLTemplate(coord);
     currentWeatherContainer.innerHTML = weatherHTMLTemplate(weather);
+}
+
+function clearCurrentForecasts(parent) {
+    const elems = parent.querySelectorAll('.day-weather');
+    if (!elems) return;
+    elems.forEach((elem) => parent.removeChild(elem));
+}
+
+function showCurrentForecasts(data) {
+    const container = document.querySelector('.forecast-list__list');
+    clearCurrentForecasts(container);
+    Object.entries(data).forEach(([date, item]) => {
+        const html = forecastHTMLTemplate(date, item);
+        container.insertAdjacentHTML('beforeend', html);
+    });
+}
+
+function clearHoursForecasts() {
+    const container = document.querySelector('.hours-forecast__list');
+    container.innerHTML = '';
+}
+
+function showScroll() {
+    const scroll = document.querySelector('.scroll-top');
+    scroll.classList.add('scroll-top_showed');
+}
+
+function showForecasts(data, { target }) {
+    showScroll();
+
+    let elem;
+    if (!target.classList.contains('day-weather')) elem = target.closest('.day-weather');
+    else elem = target;
+
+    const container = document.querySelector('.hours-forecast__list');
+    clearHoursForecasts();
+
+    const { date } = elem.dataset;
+    const arr = data[date];
+
+    arr.forEach((dayForecast) => {
+        const html = hoursForecastTemplate(serializeWeather(dayForecast));
+        container.insertAdjacentHTML('beforeend', html);
+    });
+}
+
+function addListenerToItems(data) {
+    const items = document.querySelectorAll('.day-weather');
+    items.forEach((item) => item.addEventListener('click', (e) => showForecasts(data, e)));
 }
 
 async function showForecast(val) {
@@ -175,10 +278,9 @@ async function showForecast(val) {
             lat,
         } = weather.coord;
         initMap(lon, lat);
-        console.log('forecast: ', forecast);
-        console.log('currentForecasts: ', currentForecasts);
-        console.log('weather: ', weather);
         showCurrentWeather(weather);
+        showCurrentForecasts(currentForecasts);
+        addListenerToItems(forecast);
     } catch (error) {
         console.log(error);
     }
@@ -188,15 +290,13 @@ function showUserForecast() {
     window.navigator.geolocation.getCurrentPosition(showForecast);
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
     showUserForecast();
     const form = document.forms.searchForm;
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const {
-            value,
-        } = form.elements['country-search'];
+        const { value } = form.elements['country-search'];
+        clearHoursForecasts();
         if (!value) showUserForecast();
         else showForecast(value);
     });
