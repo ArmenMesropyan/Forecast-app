@@ -96,6 +96,34 @@ img {
 }
 
 
+/* Form */
+
+.forecast-form {
+    margin-bottom: 20px;
+}
+
+.forecast-form__search {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    background-color: #313342;
+    transition: 0.5s;
+}
+
+.forecast-form__search::placeholder {
+    color: #9f9f9f;
+}
+
+.forecast-form__search:focus,
+.forecast-form__search:active {
+    outline: none;
+    border: 1px solid #7e6e6e;
+    transform: translate(0, -10px);
+}
+
+
 /* Map */
 
 #map {
