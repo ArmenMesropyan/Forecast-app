@@ -237,43 +237,15 @@ function showForecasts(data, { target }) {
     });
 }
 
-function addListenerToItems(data) {
-    const items = document.querySelectorAll('.day-weather');
-    items.forEach((item) => item.addEventListener('click', (e) => showForecasts(data, e)));
-}
-
-async function showForecast(val) {
-    try {
-        let position;
-        if (val.coords) {
-            const { coords: { latitude, longitude } } = val;
-            position = { lat: latitude, lon: longitude };
-        }
-        const weather = serializeWeather(await getForecast(position || val, 'weather'));
-        const forecast = serializeForecast(await getForecast(position || val, 'forecast'));
-        const currentForecasts = getApproximateForecast(forecast);
-        const { lon, lat } = weather.coord;
-        initMap(lon, lat);
-        showCurrentWeather(weather);
-        showCurrentForecasts(currentForecasts);
-        addListenerToItems(forecast);
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-function showUserForecast() {
-    window.navigator.geolocation.getCurrentPosition(showForecast);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-    showUserForecast();
+    // showUserForecast();
     const form = document.forms.searchForm;
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         const { value } = form.elements['country-search'];
+        console.log('value: ', value);
         clearHoursForecasts();
-        if (!value) showUserForecast();
-        else showForecast(value);
+        // if (!value) showUserForecast();
+        // else showForecast(value);
     });
 });
