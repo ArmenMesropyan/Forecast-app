@@ -1,7 +1,51 @@
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+html {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 21px;
     color: #fff;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 #app {
@@ -9,6 +53,46 @@ body {
     z-index: 1;
     width: 100vw;
     height: 100vh;
+}
+
+.coords__list,
+.coords__title,
+.forecast-form__field,
+.forecast-list__list,
+.current-weather__list,
+.day-weather__list,
+.hours-forecast__list,
+.hour-forecast__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: none;
+    border: none;
+}
+
+
+/* Geo */
+
+.coords {
+    padding: 20px 0;
+}
+
+.coords__title {
+    font-size: 17px;
+}
+
+.coords__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.coords__item_lat {
+    margin-right: 10px;
+}
+
+.coords__item_lat,
+.coords__item_lon {
+    font-size: 14px;
 }
 
 
