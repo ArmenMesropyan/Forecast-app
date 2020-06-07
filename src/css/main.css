@@ -209,6 +209,57 @@ img {
     max-width: calc(100% * 3 / 12 - 30px);
 }
 
+/* Hours Forecast */
+
+#app .hours-forecast {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+}
+
+.hours-forecast__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hours-forecast {
+    background-color: #1d1d1d;
+}
+
+.hour-forecast {
+    text-align: center;
+    border-radius: 10px;
+    background-color: #1a1919;
+    margin: 20px;
+    width: calc(100% / 12 * 3 - 40px);
+    padding: 20px 10px;
+}
+
+.hour-forecast__date {
+    font-size: 15px;
+}
+
+.forecast-list__link {
+    font-size: 0;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+}
+
+
+/* Scroll */
+
+.scroll-top {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    display: none;
+}
+
+.scroll-top_showed {
+    display: block;
+}
 
 /* Map */
 
@@ -230,6 +281,3 @@ img {
     position: relative;
     z-index: 1;
 }
-
-
-/* Main stilization */
