@@ -157,13 +157,14 @@ function forecastHTMLTemplate(date, {
         <li class="forecast-list__item day-weather" data-date="${date}">
             <a class="forecast-list__link" href="#hours-forecast">Go to this day hours forecasts</a>
             <ul class="day-weather__list">
-                <li class="day-weather__date">
-                    ${week} -${day}
+                <li class="day-weather__day">
+                    <p class="day-weather__week">${week}</p>
+                    <p class="day-weather__date">${day}</p>
                 </li>
                 <li class="day-weather__info">
                     <img src="http://openweathermap.org/img/w/${icon}.png" alt="${desc}" class="day-weather__img">
                     <p class="day-weather__temp">${temp} &#8451</p>
-                    <p class="day-weather__water">${humidity} %</p>
+                    <p class="day-weather__water water">${humidity} %</p>
                     <p class="day-weather__desc">${desc}</p>
                 </li>
             </ul>
@@ -190,7 +191,7 @@ function hoursForecastTemplate({
                 <li class="hour-forecast__info">
                     <img src="http://openweathermap.org/img/w/${icon}.png" alt="" class="hour-forecast__img">
                     <p class="hour-forecast__temp">${temp} C</p>
-                    <p class="hour-forecast__water">${humidity} %</p>
+                    <p class="hour-forecast__water water">${humidity} %</p>
                     <p class="hour-forecast__desc">${desc}</p>
                 </li>
             </ul>

@@ -188,6 +188,10 @@ img {
     padding: 0 10px;
 }
 
+.day-weather__desc {
+    font-size: 13px;
+}
+
 .forecast-list__list {
     display: flex;
     flex-wrap: wrap;
@@ -209,6 +213,7 @@ img {
     cursor: default;
 }
 
+
 /* Hours Forecast */
 
 #app .hours-forecast {
@@ -224,7 +229,8 @@ img {
 }
 
 .hours-forecast {
-    background-color: #1d1d1d;
+    background: rgb(29, 29, 29);
+    background: linear-gradient(90deg, rgb(31, 30, 30) 0%, rgba(80, 75, 75, 1) 51%, rgb(32, 36, 36) 100%);
 }
 
 .hour-forecast {
@@ -260,6 +266,35 @@ img {
 .scroll-top_showed {
     display: block;
 }
+
+
+/* Icons */
+
+.water {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.water::before {
+    content: '';
+    width: 20px;
+    height: 16px;
+    display: inline-block;
+    background: url(../img/water.png) center center no-repeat;
+    background-size: 80%;
+    margin-right: 4px;
+}
+
+.scroll-top__link {
+    font-size: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: url(../img/scroll.png) center center no-repeat;
+    background-size: 100%;
+}
+
 
 /* Map */
 
