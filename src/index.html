@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Forecast application</title>
     <link rel="icon" href="https://i.pinimg.com/originals/77/0b/80/770b805d5c99c7931366c2e84e88f251.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
 
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/main.css" />
@@ -25,37 +25,13 @@
                 <h2 class="coords__title">
                     Geo coords
                 </h2>
-                <ul class="coords__list">
-                    <li class="coords__item coords__item_lat"></li>
-                    <li class="coords__item coords__item_lon"></li>
-                </ul>
+                <ul class="coords__list"></ul>
             </div>
         </section>
         <section class="forecast-form">
             <div class="container">
                 <form class="forecast-form__form" id="searchForm">
                     <fieldset class="forecast-form__field">
-                        <label for="country-search" class="visually-hidden">Search geolocation</label>
-                        <input type="text" id="country-search" name="country-search" placeholder="Search geolocation" class="forecast-form__search" />
-                    </fieldset>
-                </form>
-            </div>
-        </section>
-        <section class="forecast-list">
-            <div class="container">
-                <ul class="forecast-list__list">
-                    <li class="forecast-list__item forecast-list__item_current current-weather"></li>
-                </ul>
-            </div>
-        </section>
-        <section class="hours-forecast" id="hours-forecast">
-            <div class="container">
-                <ul class="hours-forecast__list"></ul>
-            </div>
-        </section>
-        <section class="scroll-top">
-            <a href="#app" class="scroll-top__link">Scroll to top</a>
-        </section>
                         <label for="country-search" class="visually-hidden">Search geolocation</label
               >
               <input
@@ -74,64 +50,18 @@
           <ul class="forecast-list__list">
             <li
               class="forecast-list__item forecast-list__item_current current-weather"
-            >
-              <ul class="current-weather__list">
-                <li class="current-weather__item current-date">
-                  <p class="current-date__week">Friday</p>
-                  <p class="current-date__day">June 5</p>
-                </li>
-                <li class="current-weather__item current-main">
-                  <p class="current-main__name">London, GB</p>
-                  <p class="current-weather__temp">15 C</p>
-                </li>
-                <li class="current-weather__item current-second">
-                  <p class="current-second__water">London, GB</p>
-                  <p class="current-weather__info">Broken Clouds</p>
-                </li>
-              </ul>
-            </li>
-            <li class="forecast-list__item day-weather">
-              <a class="forecast-list__link" href="#hours-forecast"
-                >Go to this day hours forecasts</a
-              >
-              <ul class="day-weather__list">
-                <li class="day-weather__date">
-                  Friday-June-5
-                </li>
-                <li class="day-weather__info">
-                  <img src="#" alt="#" class="day-weather__img" />
-                  <p class="day-weather__temp">15 &#8451</p>
-                  <p class="day-weather__water">39 %</p>
-                  <p class="day-weather__desc">Light Rain</p>
-                </li>
-              </ul>
-            </li>
+            ></li>
           </ul>
         </div>
       </section>
       <section class="hours-forecast" id="hours-forecast">
         <div class="container">
-          <ul class="hours-forecast__list">
-            <li class="hours-forecast__item hour-forecast">
-                <ul class="hour-forecast__list">
-                    <li class="hour-forecast__date">
-                        <p class="hour-forecast__week">Sunday</p>
-                        <p class="hour-forecast__day">17 June - 10 AM</p>
-                    </li>
-                    <li class="hour-forecast__info">
-                        <img src="http://openweathermap.org/img/w/icon.png" alt="" class="hour-forecast__img">
-                        <p class="hour-forecast__temp">35 C</p>
-                        <p class="hour-forecast__water">39 %</p>
-                        <p class="hour-forecast__desc">Clear clouds</p>
-                    </li>
-                </ul>
-            </li>
-          </ul>
+          <ul class="hours-forecast__list"></ul>
         </div>
       </section>
       <section class="scroll-top">
         <a href="#app" class="scroll-top__link">Scroll to top</a>
-    </section>
+      </section>
     </div>
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
     <script src="js/app.js"></script>
