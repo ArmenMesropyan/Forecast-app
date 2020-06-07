@@ -185,11 +185,12 @@ img {
     display: flex;
     text-align: center;
     align-items: center;
+    justify-content: center;
     padding: 0 10px;
 }
 
 .day-weather__desc {
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .forecast-list__list {
@@ -199,7 +200,7 @@ img {
 }
 
 .forecast-list__item {
-    max-width: calc(100% * 1.8 / 12 - 20px);
+    min-width: calc(100% * 1.8 / 12 - 20px);
     margin-right: 20px;
     cursor: pointer;
 }
