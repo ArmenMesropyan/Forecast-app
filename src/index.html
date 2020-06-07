@@ -35,6 +35,27 @@
             <div class="container">
                 <form class="forecast-form__form" id="searchForm">
                     <fieldset class="forecast-form__field">
+                        <label for="country-search" class="visually-hidden">Search geolocation</label>
+                        <input type="text" id="country-search" name="country-search" placeholder="Search geolocation" class="forecast-form__search" />
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+        <section class="forecast-list">
+            <div class="container">
+                <ul class="forecast-list__list">
+                    <li class="forecast-list__item forecast-list__item_current current-weather"></li>
+                </ul>
+            </div>
+        </section>
+        <section class="hours-forecast" id="hours-forecast">
+            <div class="container">
+                <ul class="hours-forecast__list"></ul>
+            </div>
+        </section>
+        <section class="scroll-top">
+            <a href="#app" class="scroll-top__link">Scroll to top</a>
+        </section>
                         <label for="country-search" class="visually-hidden">Search geolocation</label
               >
               <input
