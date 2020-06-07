@@ -24,8 +24,13 @@ async function getForecast(value, type) {
 function serializeWeather({
     name,
     dt: date,
-    sys: { country },
-    main: { temp, humidity },
+    sys: {
+        country,
+    },
+    main: {
+        temp,
+        humidity,
+    },
     weather: [weather],
     coord,
 }) {
@@ -56,7 +61,9 @@ function serializeWeather({
     return state;
 }
 
-function serializeForecast({ list }) {
+function serializeForecast({
+    list,
+}) {
     const res = list.reduce((acc, item) => {
         const date = item.dt_txt.split(' ')[0];
         if (!acc[date]) acc[date] = [];
@@ -87,18 +94,24 @@ function getApproximateForecast(list) {
 // Map API
 
 function initMap(lon, lat) {
+    // eslint-disable-next-line no-undef
     mapboxgl.accessToken = 'pk.eyJ1IjoiYXJtZW5tZXNyb3B5YW4iLCJhIjoiY2tiM21wbng5MGFsZjJ5bzlreG44dDFwNyJ9.vr5iz0Fi9VgpbSJ8kxfS5Q';
+    // eslint-disable-next-line no-undef
     const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/dark-v10',
         center: [lon, lat],
         zoom: 10,
     });
+    console.log(map);
 }
 
 // App initialization
 
-function coordsHTMLTemplate({ lat, lon }) {
+function coordsHTMLTemplate({
+    lat,
+    lon,
+}) {
     return `
         <li class="coords__item coords__item_lat">${lat}</li>
         <li class="coords__item coords__item_lon">${lon}</li>
@@ -246,13 +259,24 @@ async function showForecast(val) {
     try {
         let position;
         if (val.coords) {
-            const { coords: { latitude, longitude } } = val;
-            position = { lat: latitude, lon: longitude };
+            const {
+                coords: {
+                    latitude,
+                    longitude,
+                },
+            } = val;
+            position = {
+                lat: latitude,
+                lon: longitude,
+            };
         }
         const weather = serializeWeather(await getForecast(position || val, 'weather'));
         const forecast = serializeForecast(await getForecast(position || val, 'forecast'));
         const currentForecasts = getApproximateForecast(forecast);
-        const { lon, lat } = weather.coord;
+        const {
+            lon,
+            lat,
+        } = weather.coord;
         initMap(lon, lat);
         showCurrentWeather(weather);
         showCurrentForecasts(currentForecasts);
