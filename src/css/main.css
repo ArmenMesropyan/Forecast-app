@@ -70,6 +70,31 @@ img {
 }
 
 
+/* Geo */
+
+.coords {
+    padding: 20px 0;
+}
+
+.coords__title {
+    font-size: 17px;
+}
+
+.coords__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.coords__item_lat {
+    margin-right: 10px;
+}
+
+.coords__item_lat,
+.coords__item_lon {
+    font-size: 14px;
+}
+
+
 /* Map */
 
 #map {
