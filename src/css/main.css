@@ -325,7 +325,7 @@ img {
 
 /* Media */
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 890px) {
     #map {
         min-height: 140%;
     }
@@ -337,6 +337,9 @@ img {
     .forecast-list__item:last-child {
         margin-right: 20px;
     }
+    .hour-forecast {
+        width: calc(100% / 12 * 4 - 40px);
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -345,6 +348,10 @@ img {
     }
     .forecast-list__item {
         min-width: calc(100% * 6 / 12 - 20px);
+        margin-right: 10px;
+    }
+    .hour-forecast {
+        width: calc(100% / 12 * 6 - 40px);
     }
 }
 
@@ -356,10 +363,13 @@ img {
         min-width: calc(100% * 6 / 12 - 20px);
     }
     .current-weather {
-        min-width: calc(100% * 12 / 12 - 20px);
+        min-width: 100%;
         margin: 0;
     }
     .forecast-list__item:last-child {
         margin-right: 0;
+    }
+    .hour-forecast {
+        width: 100%
     }
 }
