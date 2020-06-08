@@ -390,7 +390,7 @@ img {
 
 @media only screen and (max-width: 890px) {
     #map {
-        min-height: 140%;
+        min-height: 170%;
     }
     .forecast-list__item {
         min-width: calc(100% * 4 / 12 - 20px);
@@ -407,7 +407,7 @@ img {
 
 @media only screen and (max-width: 600px) {
     #map {
-        min-height: 200%;
+        min-height: 230%;
     }
     .forecast-list__item {
         min-width: calc(100% * 6 / 12 - 20px);
@@ -420,7 +420,14 @@ img {
 
 @media only screen and (max-width: 450px) {
     #map {
-        min-height: 240%;
+        min-height: 270%;
+    }
+    .logo__text {
+        font-size: 30px;
+    }
+    .logo__text::before {
+        width: 20px;
+        left: -15px;
     }
     .forecast-list__item {
         min-width: calc(100% * 6 / 12 - 20px);
