@@ -430,7 +430,7 @@ img {
         left: -15px;
     }
     .forecast-list__item {
-        min-width: calc(100% * 6 / 12 - 20px);
+        min-width: calc(100% * 6 / 12 - 10px);
     }
     .current-weather {
         min-width: 100%;
