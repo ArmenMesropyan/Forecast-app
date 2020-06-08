@@ -52,7 +52,8 @@ img {
     position: relative;
     z-index: 1;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
 }
 
 .coords__list,
@@ -164,6 +165,7 @@ img {
 
 .current-main__name {
     font-size: 27px;
+    line-height: 30px;
 }
 
 .current-second {
@@ -302,6 +304,8 @@ img {
 #map {
     position: absolute;
     z-index: -10;
+    height: 100%;
+    width: 100vw;
 }
 
 .mapboxgl-ctrl-logo,
@@ -312,8 +316,50 @@ img {
 
 .layer {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background: rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 1;
+}
+
+
+/* Media */
+
+@media only screen and (max-width: 850px) {
+    #map {
+        min-height: 140%;
+    }
+    .forecast-list__item {
+        min-width: calc(100% * 4 / 12 - 20px);
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+    .forecast-list__item:last-child {
+        margin-right: 20px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #map {
+        min-height: 200%;
+    }
+    .forecast-list__item {
+        min-width: calc(100% * 6 / 12 - 20px);
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    #map {
+        min-height: 240%;
+    }
+    .forecast-list__item {
+        min-width: calc(100% * 6 / 12 - 20px);
+    }
+    .current-weather {
+        min-width: calc(100% * 12 / 12 - 20px);
+        margin: 0;
+    }
+    .forecast-list__item:last-child {
+        margin-right: 0;
+    }
 }
