@@ -390,7 +390,7 @@ img {
 
 @media only screen and (max-width: 890px) {
     #map {
-        min-height: 170%;
+        min-height: 170vh;
     }
     .forecast-list__item {
         min-width: calc(100% * 4 / 12 - 20px);
@@ -407,7 +407,7 @@ img {
 
 @media only screen and (max-width: 600px) {
     #map {
-        min-height: 230%;
+        min-height: 230vh;
     }
     .forecast-list__item {
         min-width: calc(100% * 6 / 12 - 20px);
@@ -420,7 +420,7 @@ img {
 
 @media only screen and (max-width: 450px) {
     #map {
-        min-height: 270%;
+        min-height: 270vh;
     }
     .logo__text {
         font-size: 30px;
